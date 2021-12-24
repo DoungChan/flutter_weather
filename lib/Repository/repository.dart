@@ -8,7 +8,7 @@ import 'package:flutter_weather/Repository/data/model.dart';
 class WeatherRepo {
   Future<WeatherModel> getweather(String city) async {
     final response = await http.get(Uri.parse(
-        'https://api.openweathermap.org/data/2.5/weather/?q=london&appid=ce5731a85b34b77de1d239d27968c1c1'));
+        'https://api.openweathermap.org/data/2.5/weather/?q=$city&appid=ce5731a85b34b77de1d239d27968c1c1'));
     // ignore: avoid_print
     print(response.body);
     if (response.statusCode == 200) {
