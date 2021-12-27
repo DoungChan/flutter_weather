@@ -1,9 +1,11 @@
+// ignore_for_file: non_constant_identifier_names
+
 class WeatherModel {
-  final temp;
-  final pressure;
-  final humidity;
-  final temp_max;
-  final temp_min;
+  final String temp;
+  final String pressure;
+  final String humidity;
+  final String temp_max;
+  final String temp_min;
   WeatherModel(
       this.humidity, this.pressure, this.temp, this.temp_max, this.temp_min);
   WeatherModel.fromJson(Map json)

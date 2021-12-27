@@ -7,8 +7,6 @@ abstract class WeatherState extends Equatable {
 
   @override
   List<Object> get props => [];
-
-
 }
 
 class WeatherIsnotSearched extends WeatherState {}
@@ -19,8 +17,6 @@ class WeatherIsLoaded extends WeatherState {
   final _weather;
   const WeatherIsLoaded(this._weather);
   WeatherModel get getWeather => _weather;
-  @override
-  List<Object> get props => _weather;
 }
 
 class WeatherIsnotNotLoaded extends WeatherState {}

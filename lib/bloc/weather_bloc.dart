@@ -9,23 +9,39 @@ part 'weather_event.dart';
 part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  WeatherRepo weatherRepo;
+  final WeatherRepo weatherRepo;
 
-  WeatherBloc(this.weatherRepo) : super(WeatherIsnotSearched()) {
-    on<WeatherEvent>((event, emit) async* {
-      if (event is Fetchweather) {
-        yield WeatherIsLoding();
-        try {
-          WeatherModel weather = await weatherRepo.getweather(event._city);
-          yield WeatherIsLoaded(weather);
-        } catch (_) {
-          yield WeatherIsnotNotLoaded();
-        }
-      } else if (event is Resetweather) {
-        yield WeatherIsnotSearched();
+  WeatherBloc(this.weatherRepo) : super(WeatherIsnotSearched());
+
+  @override
+  Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
+    if (event is Fetchweather) {
+      yield WeatherIsLoding();
+      try {
+        WeatherModel weather = await weatherRepo.getweather(event._city);
+        yield WeatherIsLoaded(weather);
+      } catch (_) {
+        yield WeatherIsnotNotLoaded();
       }
-    });
+    } else if (event is Resetweather) {
+      yield WeatherIsnotSearched();
+    }
   }
+
+  // on<WeatherEvent>((event, emit) async* {
+  //   if (event is Fetchweather) {
+  //     yield WeatherIsLoding();
+  //     try {
+  //       WeatherModel weather = await weatherRepo.getweather(event._city);
+  //       yield WeatherIsLoaded(weather);
+  //     } catch (_) {
+  //       yield WeatherIsnotNotLoaded();
+  //     }
+  //   } else if (event is Resetweather) {
+  //     yield WeatherIsnotSearched();
+  //   }
+  // });
+
 }
 // class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
 //   late WeatherRepo weatherRepo;

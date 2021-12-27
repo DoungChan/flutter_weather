@@ -32,7 +32,7 @@ dependencies:
   flare_flutter: ^3.0.2
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.0.0
+  flutter_bloc: 
   http: ^0.13.4
 
 dev_dependencies:
